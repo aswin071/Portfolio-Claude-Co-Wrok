@@ -1,3 +1,5 @@
+'use client'
+
 const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'Book a Call', href: '#book-call' },
@@ -6,17 +8,25 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ]
 
+import { motion } from 'framer-motion'
+
 export default function Footer() {
   return (
-    <footer className="bg-brand-dark text-white">
-      <div className="max-w-5xl mx-auto px-6 md:px-12 py-12 md:py-16">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+    <footer className="bg-brand-blue text-white">
+      <div className="max-w-5xl mx-auto px-6 md:px-16 py-12 md:py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row items-center justify-between gap-8"
+        >
           {/* Logo */}
           <div className="flex flex-col items-center md:items-start gap-3">
             <img
               src="/assets/logo/logo-dark.png"
               alt="Madhavan Consulting"
-              className="h-8 w-auto"
+              className="h-14 md:h-16 w-auto"
             />
             <p className="text-white/40 text-sm">
               CPG Brand Strategy & Consulting
@@ -44,7 +54,7 @@ export default function Footer() {
           >
             admin@madhavan.com
           </a>
-        </div>
+        </motion.div>
 
         <div className="mt-10 pt-8 border-t border-white/10 text-center">
           <p className="text-white/30 text-xs">

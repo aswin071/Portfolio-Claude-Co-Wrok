@@ -1,14 +1,20 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
         brand: {
-          orange: '#F5A623',
+          blue: '#1E3A8A',
+          'blue-surf': '#3B5B8A',
+          orange: '#F97316',
+          sunkissed: '#F28B30',
+          yellow: '#FBBF24',
+          green: '#10B981',
+          red: '#EF4444',
           dark: '#1A1A1A',
           light: '#FAFAFA',
           gray: '#6B7280',
@@ -16,8 +22,13 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Playfair Display', 'Georgia', 'serif'],
+        sans: ['"SF Pro Display"', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        heading: ['Lucidity', 'Anton', 'sans-serif'],
+        anton: ['Anton', 'sans-serif'],
+      },
+      spacing: {
+        18: '4.5rem',
+        22: '5.5rem',
       },
     },
   },

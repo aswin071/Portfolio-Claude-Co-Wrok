@@ -1,3 +1,7 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
 const points = [
   {
     icon: (
@@ -6,6 +10,7 @@ const points = [
       </svg>
     ),
     text: "You're launching a CPG brand and want to cross 7-8 figures in revenue.",
+    color: 'bg-brand-orange/10 text-brand-orange group-hover:bg-brand-orange',
   },
   {
     icon: (
@@ -14,6 +19,7 @@ const points = [
       </svg>
     ),
     text: "You're at $1M in revenue and want a structured path to $10M then $100M.",
+    color: 'bg-brand-green/10 text-brand-green group-hover:bg-brand-green',
   },
   {
     icon: (
@@ -22,35 +28,71 @@ const points = [
       </svg>
     ),
     text: "Your gross margin shows 45-60%, but after trade terms, promos, and returns — EBITDA is low.",
+    color: 'bg-brand-yellow/10 text-brand-yellow group-hover:bg-brand-yellow',
   },
 ]
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+}
+
 export default function WhoThisIsFor() {
   return (
-    <section id="who-this-is-for" className="section-padding bg-white">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-14">
+    <section id="who-this-is-for" className="relative section-padding bg-white overflow-hidden">
+      {/* Supporting color blobs */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-orange/[0.04] rounded-full blur-[120px] translate-x-1/4 -translate-y-1/4" />
+      <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-brand-blue/[0.04] rounded-full blur-[100px] -translate-x-1/4 translate-y-1/4" />
+
+      <div className="relative max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-14"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-8 h-[3px] rounded-full bg-gradient-to-r from-brand-orange to-brand-sunkissed" />
+            <p className="text-brand-orange font-semibold text-sm tracking-wider uppercase">
+              Ideal Client
+            </p>
+            <div className="w-8 h-[3px] rounded-full bg-gradient-to-r from-brand-sunkissed to-brand-orange" />
+          </div>
           <h2 className="section-heading">This Is For You If</h2>
           <p className="section-subheading mx-auto">
-            I work best with founders who are ready to build — not just brainstorm.
+            I work best with founders who are ready to build not just brainstorm.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid md:grid-cols-3 gap-8"
+        >
           {points.map((point, i) => (
-            <div
+            <motion.div
               key={i}
-              className="group relative p-8 rounded-2xl bg-brand-light border border-gray-100 hover:border-brand-orange/30 hover:shadow-lg hover:shadow-brand-orange/5 transition-all duration-300"
+              variants={cardVariants}
+              whileHover={{ y: -6, transition: { duration: 0.3 } }}
+              className="group relative p-8 rounded-2xl bg-brand-light border border-gray-100 hover:border-brand-orange/20 hover:shadow-xl hover:shadow-brand-orange/[0.04] transition-shadow duration-300 cursor-default"
             >
-              <div className="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center mb-5 group-hover:bg-brand-orange group-hover:text-white transition-all duration-300">
+              <div className={`w-12 h-12 rounded-xl ${point.color} flex items-center justify-center mb-5 group-hover:text-white transition-all duration-300`}>
                 {point.icon}
               </div>
               <p className="text-brand-dark font-medium leading-relaxed">
                 {point.text}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -1,9 +1,10 @@
+'use client'
+
 import { useState, useEffect } from 'react'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'Book a Call', href: '#book-call' },
-  { label: 'About Me', href: '#about' },
+  { label: 'About', href: '#about' },
   { label: 'Newsletter', href: '#newsletter' },
 ]
 
@@ -17,28 +18,38 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Close mobile menu on resize
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth >= 768) setMobileOpen(false) }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'w-[92%] max-w-5xl bg-white/80 backdrop-blur-xl shadow-lg shadow-brand-dark/[0.04] border border-gray-200/60 rounded-2xl'
+          : 'w-[92%] max-w-6xl bg-white/40 backdrop-blur-sm border border-transparent rounded-2xl'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20 md:h-24">
+      <div className="px-5 md:px-8 flex items-center justify-between h-14 md:h-16">
+        {/* Logo */}
         <a href="#home" className="flex-shrink-0">
           <img
             src="/assets/logo/logo-light.png"
-            alt="Madhavan Consulting"
-            className="h-16 md:h-20 w-auto object-contain"
+            alt="Madhavan"
+            className="h-10 md:h-12 w-auto object-contain"
           />
         </a>
 
-        {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-8">
+        {/* Desktop nav — center links */}
+        <ul className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-brand-dark/80 hover:text-brand-orange transition-colors duration-200"
+                className="px-4 py-2 text-sm font-medium text-brand-dark/70 hover:text-brand-blue hover:bg-brand-blue/[0.05] rounded-lg transition-all duration-200"
               >
                 {link.label}
               </a>
@@ -46,37 +57,58 @@ export default function Navbar() {
           ))}
         </ul>
 
+        {/* Desktop CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="#book-call"
+            className="px-5 py-2 text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue/90 rounded-xl transition-all duration-200 shadow-sm shadow-brand-blue/20"
+          >
+            Book a Call
+          </a>
+        </div>
+
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100/50 transition-colors"
           aria-label="Toggle menu"
         >
-          <span className={`block w-6 h-0.5 bg-brand-dark transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-brand-dark transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-brand-dark transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          <div className="w-5 h-4 flex flex-col justify-between">
+            <span className={`block w-full h-[2px] bg-brand-dark rounded-full transition-all duration-300 origin-center ${mobileOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+            <span className={`block w-full h-[2px] bg-brand-dark rounded-full transition-all duration-300 ${mobileOpen ? 'opacity-0 scale-0' : ''}`} />
+            <span className={`block w-full h-[2px] bg-brand-dark rounded-full transition-all duration-300 origin-center ${mobileOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+          </div>
         </button>
       </div>
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 bg-white ${
-          mobileOpen ? 'max-h-64 border-b border-gray-100' : 'max-h-0'
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <ul className="px-6 py-4 space-y-4">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block text-sm font-medium text-brand-dark/80 hover:text-brand-orange transition-colors"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="px-5 pb-5 pt-2 border-t border-gray-100/50">
+          <ul className="space-y-1">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block px-4 py-2.5 text-sm font-medium text-brand-dark/70 hover:text-brand-blue hover:bg-brand-blue/[0.05] rounded-xl transition-all"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="#book-call"
+            onClick={() => setMobileOpen(false)}
+            className="mt-3 block text-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue/90 rounded-xl transition-all shadow-sm shadow-brand-blue/20"
+          >
+            Book a Call
+          </a>
+        </div>
       </div>
     </nav>
   )
