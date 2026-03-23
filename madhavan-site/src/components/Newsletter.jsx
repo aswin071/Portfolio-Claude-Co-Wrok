@@ -61,7 +61,7 @@ export default function Newsletter() {
             <div className="mt-8 flex items-center gap-3">
               <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
                 <img
-                  src="/assets/madhavan-photo.png"
+                  src="/assets/madhavan-photo.jpeg"
                   alt="Madhavan Unni"
                   className="w-full h-full object-cover object-top"
                 />
