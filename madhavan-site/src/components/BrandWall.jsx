@@ -22,7 +22,7 @@ export default function BrandWall() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="text-center text-xs md:text-sm font-medium text-brand-gray tracking-wider uppercase mb-8"
         >
-          Trusted by leading CPG brands
+          Trusted by Global CPG Brands
         </motion.p>
 
         {/* Logo marquee — infinite scroll */}
@@ -43,7 +43,7 @@ export default function BrandWall() {
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="h-10 md:h-12 lg:h-14 w-auto object-contain opacity-75 hover:opacity-100 transition-all duration-500"
+                    className="h-10 md:h-10 lg:h-12 w-24 md:w-28 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                   />
                 </div>
               ))}
@@ -58,7 +58,7 @@ export default function BrandWall() {
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="h-10 md:h-12 lg:h-14 w-auto object-contain opacity-75 hover:opacity-100 transition-all duration-500"
+                    className="h-10 md:h-10 lg:h-12 w-24 md:w-28 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                   />
                 </div>
               ))}

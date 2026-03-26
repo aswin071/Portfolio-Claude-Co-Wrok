@@ -78,7 +78,7 @@ export default function WhatIDo() {
             What I Do
           </h2>
           <p className="text-brand-gray text-base md:text-lg mt-3 max-w-2xl mx-auto">
-            Strategic clarity for CPG brands that want to scale profitably.
+            I bring strategic clarity for CPG brands that want to scale profitably.
           </p>
         </motion.div>
 

@@ -1,16 +1,21 @@
 'use client'
 
-const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Book a Call', href: '#book-call' },
-  { label: 'About Me', href: '#about' },
-  { label: 'Newsletter', href: '#newsletter' },
-  { label: 'Contact', href: '#contact' },
-]
-
 import { motion } from 'framer-motion'
 
+const navLinks = [
+  { label: 'Home', id: 'home' },
+  { label: 'Let\'s Talk', id: 'book-call' },
+  { label: 'About Me', id: 'about' },
+  { label: 'Newsletter', id: 'newsletter' },
+  { label: 'Contact', id: 'contact' },
+]
+
 export default function Footer() {
+  const scrollTo = (id) => {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <footer className="bg-brand-blue text-white">
       <div className="max-w-5xl mx-auto px-6 md:px-16 py-12 md:py-16">
@@ -21,38 +26,35 @@ export default function Footer() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col md:flex-row items-center justify-between gap-8"
         >
-          {/* Logo */}
           <div className="flex flex-col items-center md:items-start gap-3">
             <img
               src="/assets/logo/logo-dark.png"
               alt="Madhavan Consulting"
-              className="h-14 md:h-16 w-auto"
+              className="h-[104px] md:h-[120px] w-auto"
             />
             <p className="text-white/40 text-sm">
               CPG Brand Strategy & Consulting
             </p>
           </div>
 
-          {/* Nav */}
           <ul className="flex flex-wrap items-center justify-center gap-6">
             {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
+              <li key={link.id}>
+                <button
+                  onClick={() => scrollTo(link.id)}
                   className="text-sm text-white/60 hover:text-brand-orange transition-colors"
                 >
                   {link.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
 
-          {/* Email */}
           <a
-            href="mailto:admin@madhavan.com"
+            href="mailto:admin@madhavanunni.com"
             className="text-sm text-white/60 hover:text-brand-orange transition-colors"
           >
-            admin@madhavan.com
+            admin@madhavanunni.com
           </a>
         </motion.div>
 

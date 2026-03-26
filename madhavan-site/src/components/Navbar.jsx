@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Newsletter', href: '#newsletter' },
+  { label: 'Home', href: 'home' },
+  { label: 'About', href: 'about' },
+  { label: 'The CPG Insider', href: 'newsletter' },
 ]
 
 export default function Navbar() {
@@ -14,15 +14,20 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close mobile menu on resize
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 768) setMobileOpen(false) }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  const scrollTo = useCallback((id) => {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    setMobileOpen(false)
   }, [])
 
   return (
@@ -34,40 +39,38 @@ export default function Navbar() {
       }`}
     >
       <div className="px-5 md:px-8 flex items-center justify-between h-14 md:h-16">
-        {/* Logo */}
-        <a href="#home" className="flex-shrink-0">
+        <button onClick={() => scrollTo('home')} className="flex-shrink-0">
           <img
             src="/assets/logo/logo-light.png"
             alt="Madhavan"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-[104px] md:h-[120px] w-auto object-contain"
           />
-        </a>
+        </button>
 
-        {/* Desktop nav — center links */}
         <ul className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
+              <button
+                onClick={() => scrollTo(link.href)}
                 className="px-4 py-2 text-sm font-medium text-brand-dark/70 hover:text-brand-blue hover:bg-brand-blue/[0.05] rounded-lg transition-all duration-200"
               >
                 {link.label}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
 
-        {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="#book-call"
+            href="https://madhavan-unni.kit.com/6d2dca988c"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-5 py-2 text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue/90 rounded-xl transition-all duration-200 shadow-sm shadow-brand-blue/20"
           >
-            Book a Call
+            Join 2K+ Subscribers
           </a>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100/50 transition-colors"
@@ -81,7 +84,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
           mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
@@ -91,22 +93,23 @@ export default function Navbar() {
           <ul className="space-y-1">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-2.5 text-sm font-medium text-brand-dark/70 hover:text-brand-blue hover:bg-brand-blue/[0.05] rounded-xl transition-all"
+                <button
+                  onClick={() => scrollTo(link.href)}
+                  className="block w-full text-left px-4 py-2.5 text-sm font-medium text-brand-dark/70 hover:text-brand-blue hover:bg-brand-blue/[0.05] rounded-xl transition-all"
                 >
                   {link.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
           <a
-            href="#book-call"
+            href="https://madhavan-unni.kit.com/6d2dca988c"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
-            className="mt-3 block text-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue/90 rounded-xl transition-all shadow-sm shadow-brand-blue/20"
+            className="mt-3 block w-full text-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue/90 rounded-xl transition-all shadow-sm shadow-brand-blue/20"
           >
-            Book a Call
+            Join 2K+ Subscribers
           </a>
         </div>
       </div>

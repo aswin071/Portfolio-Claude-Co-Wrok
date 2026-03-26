@@ -1,5 +1,6 @@
 import Navbar from '../src/components/Navbar'
 import Hero from '../src/components/Hero'
+import OpenLetter from '../src/components/OpenLetter'
 import WhoThisIsFor from '../src/components/WhoThisIsFor'
 import WhatIDo from '../src/components/WhatIDo'
 import BrandWall from '../src/components/BrandWall'
@@ -17,16 +18,16 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
-      {/* <AboutIntro /> */}
+      <OpenLetter />
       <BrandWall />
       <WhoThisIsFor />
       <WhatIDo />
       <Testimonials />
       <About />
-      <BookCall />
       <WaveToBlue />
       <Newsletter />
       <WaveToWhite />
+      <BookCall />
       <Contact />
       <WaveToBlue />
       <Footer />

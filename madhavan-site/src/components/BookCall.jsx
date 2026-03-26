@@ -1,8 +1,21 @@
 'use client'
 
+import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 export default function BookCall() {
+  const iframeRef = useRef(null)
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setLoaded(true); observer.disconnect() } },
+      { rootMargin: '200px' }
+    )
+    if (iframeRef.current) observer.observe(iframeRef.current)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section id="book-call" className="relative py-20 md:py-28 bg-white overflow-hidden">
       {/* Supporting color decorative shapes */}
@@ -38,10 +51,10 @@ export default function BookCall() {
               </p>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-brand-blue leading-tight mb-5">
-              Book a 1:1 Call
+              Let&apos;s Talk
             </h2>
             <p className="text-brand-gray text-base leading-relaxed mb-6">
-              If you&apos;re a founder or operator building a CPG brand and want a focused conversation on your biggest challenge — book a call.
+              If you&apos;re a founder or operator building a CPG brand and want a focused conversation on your biggest challenge — let&apos;s talk.
             </p>
             <div className="space-y-3 mb-8">
               {[
@@ -61,8 +74,8 @@ export default function BookCall() {
             </div>
             <p className="text-xs text-brand-gray">
               Prefer email? Reach out at{' '}
-              <a href="mailto:admin@madhavan.com" className="text-brand-blue hover:text-brand-orange transition-colors font-medium">
-                admin@madhavan.com
+              <a href="mailto:admin@madhavanunni.com" className="text-brand-blue hover:text-brand-orange transition-colors font-medium">
+                admin@madhavanunni.com
               </a>
             </p>
           </motion.div>
@@ -75,15 +88,22 @@ export default function BookCall() {
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="md:col-span-3"
           >
-            <div className="rounded-2xl overflow-hidden bg-white shadow-xl shadow-brand-blue/[0.06] border border-gray-100">
-              <iframe
-                src="https://calendly.com/madhavanunni/new-meeting"
-                width="100%"
-                height="650"
-                frameBorder="0"
-                title="Schedule a call with Madhavan"
-                className="w-full"
-              />
+            <div ref={iframeRef} className="rounded-2xl overflow-hidden bg-white shadow-xl shadow-brand-blue/[0.06] border border-gray-100 min-h-[650px]">
+              {loaded ? (
+                <iframe
+                  src="https://calendly.com/madhavanunni/new-meeting"
+                  width="100%"
+                  height="650"
+                  frameBorder="0"
+                  loading="lazy"
+                  title="Schedule a call with Madhavan"
+                  className="w-full"
+                />
+              ) : (
+                <div className="flex items-center justify-center h-[650px] text-brand-gray text-sm">
+                  Loading calendar...
+                </div>
+              )}
             </div>
           </motion.div>
         </div>

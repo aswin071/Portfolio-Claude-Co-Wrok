@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { motion, useAnimationControls } from 'framer-motion'
+import SmoothLink from './SmoothLink'
 
 const testimonials = [
   {
@@ -182,15 +183,15 @@ export default function Testimonials() {
             <p className="text-brand-gray text-base leading-relaxed max-w-md mb-8">
               Real feedback from founders and operators building CPG brands across the Middle East & India. These are the people in the trenches and this is what they have to say.
             </p>
-            <a
-              href="#book-call"
+            <SmoothLink
+              to="book-call"
               className="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold px-6 py-3 rounded-full transition-colors duration-200 shadow-lg shadow-brand-blue/20"
             >
-              Book a Call
+              Let&apos;s Talk
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </SmoothLink>
           </div>
 
           {/* Right side — two scrolling columns, pause on hover */}

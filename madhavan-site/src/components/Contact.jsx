@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import SmoothLink from './SmoothLink'
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
@@ -68,7 +69,7 @@ export default function Contact() {
             {/* Contact details */}
             <div className="space-y-4">
               <a
-                href="mailto:admin@madhavan.com"
+                href="mailto:admin@madhavanunni.com"
                 className="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-brand-orange/[0.05] to-brand-sunkissed/[0.02] border border-brand-orange/10 hover:border-brand-orange/25 transition-all"
               >
                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-orange to-brand-sunkissed flex items-center justify-center shadow-md shadow-brand-orange/20 flex-shrink-0">
@@ -78,13 +79,13 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[11px] text-brand-gray uppercase tracking-wider font-medium">Email</p>
-                  <p className="text-sm font-semibold text-brand-dark group-hover:text-brand-orange transition-colors">admin@madhavan.com</p>
+                  <p className="text-sm font-semibold text-brand-dark group-hover:text-brand-orange transition-colors">admin@madhavanunni.com</p>
                 </div>
               </a>
 
-              <a
-                href="#book-call"
-                className="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-brand-blue/[0.05] to-brand-blue-surf/[0.02] border border-brand-blue/10 hover:border-brand-blue/25 transition-all"
+              <SmoothLink
+                to="book-call"
+                className="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-brand-blue/[0.05] to-brand-blue-surf/[0.02] border border-brand-blue/10 hover:border-brand-blue/25 transition-all text-left"
               >
                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-blue to-brand-blue-surf flex items-center justify-center shadow-md shadow-brand-blue/20 flex-shrink-0">
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
@@ -93,9 +94,9 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[11px] text-brand-gray uppercase tracking-wider font-medium">Prefer a call?</p>
-                  <p className="text-sm font-semibold text-brand-dark group-hover:text-brand-blue transition-colors">Book a 1:1 session</p>
+                  <p className="text-sm font-semibold text-brand-dark group-hover:text-brand-blue transition-colors">Let&apos;s Talk</p>
                 </div>
-              </a>
+              </SmoothLink>
             </div>
           </motion.div>
 

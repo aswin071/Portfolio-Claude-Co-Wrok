@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import SmoothLink from './SmoothLink'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -61,7 +62,7 @@ export default function Hero() {
               {...fadeUp(0.55)}
               className="mt-7 text-base md:text-[1.1rem] text-brand-gray leading-relaxed max-w-md"
             >
-              I work with founders and operators building consumer brands across the Middle East & India from strategy to shelf.
+              I work with founders and operators building consumer brands across the Middle East & India from strategy to scale.
             </motion.p>
 
             {/* CTA buttons */}
@@ -77,12 +78,12 @@ export default function Hero() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
-              <a
-                href="#book-call"
+              <SmoothLink
+                to="book-call"
                 className="inline-flex items-center justify-center px-7 py-3.5 border border-brand-blue/15 text-brand-blue font-medium rounded-lg hover:bg-brand-blue/[0.04] transition-all duration-300 text-sm tracking-wide"
               >
-                Book a Call
-              </a>
+                Let&apos;s Talk
+              </SmoothLink>
             </motion.div>
 
             {/* Subtle social proof line */}
@@ -110,7 +111,7 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 1.3 }}
                 className="text-xs text-brand-gray"
               >
-                Trusted by founders in <span className="text-brand-dark font-medium">Dubai, Riyadh, Mumbai</span> & more
+                Trusted by founders in <span className="text-brand-dark font-medium">Dubai, Riyadh, Mumbai, London</span> & more
               </motion.p>
             </motion.div>
           </div>
@@ -149,8 +150,8 @@ export default function Hero() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[10px] text-brand-gray uppercase tracking-wider font-medium">Experience</p>
-                  <p className="text-sm font-bold text-brand-dark leading-tight">6+ Global Brands</p>
+                  <p className="text-[10px] text-brand-gray uppercase tracking-wider font-medium">Worked with</p>
+                  <p className="text-sm font-bold text-brand-dark leading-tight">10+ Brands</p>
                 </div>
               </motion.div>
 
@@ -166,7 +167,7 @@ export default function Hero() {
                 </div>
                 <div>
                   <p className="text-[10px] text-brand-gray uppercase tracking-wider font-medium">Markets</p>
-                  <p className="text-sm font-bold text-brand-dark leading-tight">Middle East & India</p>
+                  <p className="text-sm font-bold text-brand-dark leading-tight">10+ Markets</p>
                 </div>
               </motion.div>
             </div>
@@ -178,8 +179,8 @@ export default function Hero() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             {/* Left — anchor links */}
             <div className="flex items-center gap-8">
-              <a
-                href="#who-this-is-for"
+              <SmoothLink
+                to="who-this-is-for"
                 className="group flex items-center gap-2.5 text-sm text-brand-gray hover:text-brand-blue transition-colors"
               >
                 <span className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center group-hover:border-brand-blue/30 group-hover:bg-brand-blue/[0.04] transition-all">
@@ -188,9 +189,9 @@ export default function Hero() {
                   </svg>
                 </span>
                 <span className="font-medium">Who This Is For</span>
-              </a>
-              <a
-                href="#what-i-do"
+              </SmoothLink>
+              <SmoothLink
+                to="what-i-do"
                 className="group flex items-center gap-2.5 text-sm text-brand-gray hover:text-brand-blue transition-colors"
               >
                 <span className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center group-hover:border-brand-blue/30 group-hover:bg-brand-blue/[0.04] transition-all">
@@ -199,7 +200,7 @@ export default function Hero() {
                   </svg>
                 </span>
                 <span className="font-medium">What I Do</span>
-              </a>
+              </SmoothLink>
             </div>
 
             {/* Right — newsletter CTA */}

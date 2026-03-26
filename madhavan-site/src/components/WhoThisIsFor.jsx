@@ -57,16 +57,9 @@ export default function WhoThisIsFor() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-14"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-[3px] rounded-full bg-gradient-to-r from-brand-orange to-brand-sunkissed" />
-            <p className="text-brand-orange font-semibold text-sm tracking-wider uppercase">
-              Ideal Client
-            </p>
-            <div className="w-8 h-[3px] rounded-full bg-gradient-to-r from-brand-sunkissed to-brand-orange" />
-          </div>
-          <h2 className="section-heading">This Is For You If</h2>
+          <h2 className="section-heading">I work best with founders who are ready to build global brands.</h2>
           <p className="section-subheading mx-auto">
-            I work best with founders who are ready to build not just brainstorm.
+            I bring strategic clarity for CPG founders who want to scale — not just brainstorm.
           </p>
         </motion.div>
 
