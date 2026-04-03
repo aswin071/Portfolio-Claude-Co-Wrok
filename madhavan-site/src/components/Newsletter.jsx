@@ -1,11 +1,43 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Newsletter() {
   const iframeRef = useRef(null)
   const [loaded, setLoaded] = useState(false)
+  const [selectedPost, setSelectedPost] = useState(null)
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const newsletters = [
+    {
+      title: 'Oh no! you missed this 😥',
+      desc: 'A deep dive into why some CPG campaigns convert instantly, while others burn cash without generating repeat purchase.',
+      tag: 'Newsletter',
+      date: 'October 24, 2024',
+      published: true,
+      link: 'https://madhavan-unni.kit.com/posts/oh-no-you-missed-this'
+    },
+    {
+      title: 'Retail Velocity Playbook',
+      desc: 'Supercharge your retail strategy with a complete toolkit to understand shelf dynamics and rapidly scale your growth.',
+      tag: 'Insights',
+      date: 'October 31, 2024',
+      published: false,
+      link: 'coming_soon'
+    },
+    {
+      title: 'The 1% Margin Challenge',
+      desc: 'Stop guessing, start optimizing. Learn how a tiny adjustment in retail pricing strategy completely revolutionized the bottom line.',
+      tag: 'Case Study',
+      date: 'November 7, 2024',
+      published: false,
+      link: 'coming_soon'
+    }
+  ]
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % newsletters.length)
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + newsletters.length) % newsletters.length)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -67,37 +99,72 @@ export default function Newsletter() {
             </div>
 
             {/* Recent newsletters */}
-            {/* Recent editions */}
-            <div className="mt-10">
-              <h3 className="text-white font-semibold text-base mb-5">
-                Read past editions
-              </h3>
-              <div className="space-y-2.5">
-                {[
-                  { title: 'Why 80% of new CPG brands fail in Year 2', date: 'March 20, 2026', tag: 'Strategy', link: '#' },
-                  { title: 'The shelf placement hack no one talks about', date: 'March 13, 2026', tag: 'Retail', link: '#' },
-                  { title: 'How one Dubai brand 3x\'d margins in 6 months', date: 'March 6, 2026', tag: 'Case Study', link: '#' },
-                ].map((item) => (
-                  <a
-                    key={item.title}
-                    href={item.link}
-                    className="group flex items-center justify-between bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/[0.12] rounded-xl px-5 py-4 transition-all duration-300"
+            {/* Authentic Typography-Driven Carousel (No Boxes) */}
+            <div className="mt-16 w-full max-w-md">
+              {/* Header + Minimal Arrows */}
+              <div className="flex items-end justify-between mb-8 border-b border-white/[0.08] pb-4">
+                <h3 className="text-white/80 text-sm font-bold tracking-[0.2em] uppercase">
+                  Past Editions
+                </h3>
+                <div className="flex items-center gap-3">
+                  <button onClick={prevSlide} className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FFC107] text-[#1A202C] hover:bg-white hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg" aria-label="Previous">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                  </button>
+                  <button onClick={nextSlide} className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FFC107] text-[#1A202C] hover:bg-white hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg" aria-label="Next">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Single Item Framer Motion Viewport */}
+              <div className="relative h-[290px] md:h-[280px] w-full overflow-hidden">
+                {newsletters.map((item, idx) => (
+                  <motion.div 
+                     key={idx} 
+                     initial={false}
+                     animate={{ 
+                       opacity: currentSlide === idx ? 1 : 0,
+                       x: `${(idx - currentSlide) * 100}%`
+                     }}
+                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                     className="absolute inset-0 w-full flex flex-col justify-start"
+                     style={{ pointerEvents: currentSlide === idx ? 'auto' : 'none' }}
                   >
-                    <div className="flex items-center gap-4">
-                      <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-md bg-brand-orange/15 text-brand-orange text-[10px] font-semibold uppercase tracking-wider flex-shrink-0">
-                        {item.tag}
-                      </span>
-                      <p className="text-white/80 group-hover:text-white text-sm font-medium transition-colors">
-                        {item.title}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-                      <span className="text-white/30 text-xs hidden md:block">{item.date}</span>
-                      <svg className="w-4 h-4 text-white/20 group-hover:text-brand-orange group-hover:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                      </svg>
-                    </div>
-                  </a>
+                     <div className="bg-[#1e2f5d]/40 hover:bg-[#1e2f5d]/60 border border-white/5 hover:border-white/10 rounded-[1.5rem] p-6 md:p-8 h-full flex flex-col justify-between transition-all duration-300 shadow-xl relative overflow-hidden group">
+                       {/* Subtle accent glow top right */}
+                       <div className="absolute -top-12 -right-12 w-32 h-32 bg-brand-orange/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                       
+                       <div className="relative z-10">
+                         <div className="flex items-center gap-3 mb-5">
+                            <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1.5 rounded-md ${item.published ? 'bg-brand-orange/20 text-brand-orange' : 'bg-white/5 text-white/40'}`}>
+                              {item.tag}
+                            </span>
+                            <span className="text-white/40 text-xs font-semibold">{item.date}</span>
+                         </div>
+                         
+                         <h4 
+                           onClick={() => item.published ? setSelectedPost(item.link) : setSelectedPost('coming_soon')}
+                           className="font-serif font-bold text-white text-xl md:text-2xl leading-snug mb-3 cursor-pointer hover:text-brand-orange transition-colors"
+                         >
+                           {item.title}
+                         </h4>
+                         
+                         <p className="text-white/60 text-sm leading-relaxed mb-6 font-sans line-clamp-3">
+                           {item.desc}
+                         </p>
+                       </div>
+                       
+                       <button 
+                         onClick={() => item.published ? setSelectedPost(item.link) : setSelectedPost('coming_soon')}
+                         className={`flex items-center text-sm font-bold tracking-wide transition-colors w-max relative z-10 group/btn ${item.published ? 'text-brand-orange hover:text-white' : 'text-white/30 hover:text-white/50 cursor-not-allowed'}`}
+                       >
+                         {item.published ? 'Read Edition' : 'Coming Soon'} 
+                         <svg className={`w-4 h-4 ml-1.5 transition-transform ${item.published ? 'group-hover/btn:translate-x-1.5' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                           <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                         </svg>
+                       </button>
+                     </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -173,6 +240,67 @@ export default function Newsletter() {
           </motion.div>
         </div>
       </div>
+      {/* Post Reading Modal */}
+      <AnimatePresence>
+        {selectedPost && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 bg-[#1A202C]/80 backdrop-blur-sm"
+          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.6, y: 40 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 20 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              className="relative w-full max-w-5xl bg-[#FAF8F5] rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl h-[85vh] md:h-[90vh] flex flex-col"
+            >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 bg-white shadow-sm z-10">
+              <h3 className="font-serif font-bold text-xl md:text-2xl text-brand-blue">
+                The CPG Insider <span className="font-sans text-brand-orange font-medium text-lg ml-2 border-l border-gray-200 pl-2">Past Edition</span>
+              </h3>
+              <button 
+                onClick={() => setSelectedPost(null)}
+                className="p-2.5 rounded-full hover:bg-gray-100 transition-colors shadow-sm border border-gray-100"
+              >
+                <svg className="w-6 h-6 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            {/* Modal Content - iFrame */}
+            <div className="flex-1 w-full relative">
+              {selectedPost === 'coming_soon' ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#FAF8F5] p-6 text-center">
+                  <div className="w-16 h-16 rounded-full bg-brand-orange/10 flex items-center justify-center mb-6">
+                    <svg className="w-8 h-8 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-serif font-bold text-brand-blue mb-4">Edition Coming Soon</h2>
+                  <p className="text-brand-blue/60 text-lg max-w-sm mx-auto">This newsletter edition hasn't been published yet. Subscribe to the CPG Insider to get it directly in your inbox.</p>
+                </div>
+              ) : (
+                <div className="absolute inset-0 bg-white">
+                  <div className="absolute inset-0 flex items-center justify-center text-brand-blue/30 text-lg font-medium">
+                    Loading ...
+                  </div>
+                  <iframe 
+                    src={selectedPost}
+                    className="relative z-10 w-full h-full bg-white"
+                    frameBorder="0"
+                    title="Newsletter Post"
+                  />
+                </div>
+              )}
+            </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

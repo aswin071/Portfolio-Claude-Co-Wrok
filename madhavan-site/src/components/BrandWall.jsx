@@ -7,6 +7,7 @@ const brands = [
   { name: 'Bateel International', logo: '/assets/brands/bateel.jpeg' },
   { name: 'Pure Harvest Smart Farms', logo: '/assets/brands/pure-harvest.jpeg' },
   { name: 'Jomara Premium Organic Dates', logo: '/assets/brands/jomara.png' },
+  { name: 'Lumy', logo: '/assets/brands/lumy.jpeg' },
 ]
 
 import { motion } from 'framer-motion'
