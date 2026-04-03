@@ -6,7 +6,7 @@ export default function AboutIntro() {
         <div className="mb-8 flex justify-center">
           <div className="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-white/20 shadow-xl shadow-black/20">
             <img
-              src="/assets/madhavan-photo.jpeg"
+              src="/assets/madhavan-logo.jpg"
               alt="Madhavan Unni"
               className="w-full h-full object-cover object-center"
             />

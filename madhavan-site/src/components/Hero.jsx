@@ -131,7 +131,7 @@ export default function Hero() {
                 className="relative w-[280px] h-[340px] md:w-[320px] md:h-[400px] lg:w-[360px] lg:h-[440px] rounded-3xl overflow-hidden"
               >
                 <img
-                  src="/assets/madhavan-photo.jpeg"
+                  src="/assets/madhavan-photo.jpg"
                   alt="Madhavan Unni — CPG Brand Strategist"
                   className="w-full h-full object-cover object-top"
                 />
