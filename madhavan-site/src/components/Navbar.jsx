@@ -32,18 +32,17 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${scrolled
           ? 'w-[92%] max-w-5xl bg-white/80 backdrop-blur-xl shadow-lg shadow-brand-dark/[0.04] border border-gray-200/60 rounded-2xl'
           : 'w-[92%] max-w-6xl bg-white/40 backdrop-blur-sm border border-transparent rounded-2xl'
-      }`}
+        }`}
     >
       <div className="px-5 md:px-8 flex items-center justify-between h-14 md:h-16">
         <button onClick={() => scrollTo('home')} className="flex-shrink-0">
           <img
             src="/assets/logo/logo-light.png"
             alt="Madhavan"
-            className="h-[104px] md:h-[120px] w-auto object-contain"
+            className="h-[140px] md:h-[170px] w-auto object-contain"
           />
         </button>
 
@@ -85,9 +84,8 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <div className="px-5 pb-5 pt-2 border-t border-gray-100/50">
           <ul className="space-y-1">

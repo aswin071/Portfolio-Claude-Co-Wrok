@@ -14,19 +14,18 @@ export default function Contact() {
     setStatus('sending')
 
     try {
-      const res = await fetch('https://formspree.io/f/your-form-id', {
+      
+      await fetch('https://script.google.com/macros/s/AKfycbxH9z-8FfW2hihN_-NbHP7oJJ1STM2w6wyv6b3fbAoR18-Vg1SQYBpeUDr29fpNYz32/exec', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(formData),
       })
+      
 
-      if (res.ok) {
-        setStatus('sent')
-        setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => setStatus(null), 4000)
-      } else {
-        setStatus('error')
-      }
+      setStatus('sent')
+      setFormData({ name: '', email: '', message: '' })
+      setTimeout(() => setStatus(null), 4000)
     } catch {
       setStatus('error')
     }

@@ -7,14 +7,14 @@ export default function OpenLetter() {
     <section className="relative bg-brand-blue pt-20 pb-12 md:pt-32 md:pb-16 overflow-hidden">
       {/* Premium ambient light */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-brand-orange/[0.03] to-transparent pointer-events-none" />
-      
+
       <div className="relative max-w-3xl mx-auto px-6 text-center">
         {/* Headline */}
-        <motion.h2 
-           initial={{ opacity: 0, y: 20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           className="text-4xl md:text-6xl font-serif text-white leading-[1.1] tracking-tight mb-16"
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-6xl font-serif text-white leading-[1.1] tracking-tight mb-16"
         >
           The CPG <span className="text-brand-orange">Reality</span>
         </motion.h2>
@@ -27,7 +27,7 @@ export default function OpenLetter() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            As long as humanity exists, we will need food, clothing, and everyday essentials. 
+            As long as humanity exists, we will need food, clothing, and everyday essentials.
             CPG remains grounded in physical reality and tangibility. It's about what you can hold in your hands.
           </motion.p>
 
@@ -37,7 +37,7 @@ export default function OpenLetter() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            But to build something real, you must understand behavior. 
+            But to build something real, you must understand behavior.
             Margins and velocity matter, but so does figuring out exactly why someone picks your product over the 20 others sitting right next to it on the shelf.
           </motion.p>
 
@@ -62,7 +62,7 @@ export default function OpenLetter() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            We don't build for clicks, vanity metrics, or fleeting hype. 
+            We don't build for clicks, vanity metrics, or fleeting hype.
             We build for repeat purchase, habit, trust, and the long game.
           </motion.p>
 
@@ -85,17 +85,17 @@ export default function OpenLetter() {
 
           {/* Signature Logo Area - Tighter layout */}
           <motion.div
-             initial={{ opacity: 0, scale: 0.9 }}
-             whileInView={{ opacity: 1, scale: 1 }}
-             viewport={{ once: true }}
-             transition={{ delay: 0.6, type: "spring" }}
-             className="mt-12 flex flex-col items-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, type: "spring" }}
+            className="mt-12 flex flex-col items-center"
           >
-             <motion.img 
-                src="/assets/logo/logo-dark.png" 
-                alt="Madhavan" 
-                className="w-[160px] md:w-[220px] opacity-80 grayscale brightness-200 drop-shadow-xl" 
-             />
+            <motion.img
+              src="/assets/logo/logo-dark.png"
+              alt="Madhavan"
+              className="w-[240px] md:w-[320px] drop-shadow-xl"
+            />
           </motion.div>
         </div>
       </div>

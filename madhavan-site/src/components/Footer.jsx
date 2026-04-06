@@ -30,7 +30,7 @@ export default function Footer() {
             <img
               src="/assets/logo/logo-dark.png"
               alt="Madhavan Consulting"
-              className="h-[104px] md:h-[120px] w-auto"
+              className="h-[140px] md:h-[170px] w-auto"
             />
             <p className="text-white/40 text-sm">
               CPG Brand Strategy & Consulting
