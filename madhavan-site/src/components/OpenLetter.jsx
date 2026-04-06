@@ -9,6 +9,40 @@ export default function OpenLetter() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-brand-orange/[0.03] to-transparent pointer-events-none" />
 
       <div className="relative max-w-3xl mx-auto px-6 text-center">
+        {/* Open Letter Label */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center mb-10"
+        >
+          <div className="relative mb-5 flex items-center justify-center">
+            {/* The main static line base */}
+            <div className="w-16 h-[2px] bg-brand-orange/30 absolute" />
+            
+            {/* The 'Live' animated line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ 
+                scaleX: [0, 1.25, 1],
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{ 
+                scaleX: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+                opacity: { 
+                  repeat: Infinity, 
+                  duration: 2, 
+                  ease: "easeInOut" 
+                }
+              }}
+              className="w-16 h-[2px] bg-brand-orange origin-center"
+            />
+          </div>
+          <p className="text-brand-orange text-xs md:text-sm font-bold tracking-[0.4em] uppercase">
+            An Open Letter to CPG Founders
+          </p>
+        </motion.div>
+
         {/* Headline */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
