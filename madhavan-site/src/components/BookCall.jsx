@@ -50,10 +50,10 @@ export default function BookCall() {
                 Let&apos;s Talk
               </p>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue leading-tight mb-5">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-blue leading-tight mb-6">
               Let&apos;s Talk
             </h2>
-            <p className="text-brand-gray text-base leading-relaxed mb-6">
+            <p className="text-brand-gray text-lg leading-relaxed mb-8">
               If you&apos;re a founder or operator building a CPG brand and want a focused conversation on your biggest challenge — let&apos;s talk.
             </p>
             <div className="space-y-3 mb-8">
@@ -68,7 +68,7 @@ export default function BookCall() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-brand-dark/70 text-sm">{point.text}</span>
+                  <span className="text-brand-dark/80 text-base font-medium">{point.text}</span>
                 </div>
               ))}
             </div>
